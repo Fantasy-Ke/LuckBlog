@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugar" Version="5.0.3.8" />
+    <PackageReference Include="Sugar.Core" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
