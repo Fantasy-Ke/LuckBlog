@@ -11,12 +11,19 @@ using System.Threading.Tasks;
 
 namespace MyBBSWebApi.Controllers
 {
+    /// <summary>
+    /// 新闻控制器
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BlogNewsController : ControllerBase
     {
         // GET: api/<BlogNewsController>
         private readonly IBlogNewsService _blogNewsService;
+        /// <summary>
+        /// 新闻构造函数
+        /// </summary>
+        /// <param name="blogNewsService"></param>
         public BlogNewsController(IBlogNewsService blogNewsService)
         {
             this._blogNewsService = blogNewsService;

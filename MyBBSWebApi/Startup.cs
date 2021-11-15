@@ -18,16 +18,30 @@ using System.Threading.Tasks;
 
 namespace MyBBSWebApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// 服务
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -70,7 +84,11 @@ namespace MyBBSWebApi
             services.AddCustomIOC();
             #endregion
         }
-
+        /// <summary>
+        /// 中间件
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -99,12 +117,13 @@ namespace MyBBSWebApi
     {
             public static IServiceCollection AddCustomIOC(this IServiceCollection services)
             {
+                //新闻信息
                 services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
                 services.AddScoped<IBlogNewsService, BlogNewsService>();
-
+                //类型
                 services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
                 services.AddScoped<ITypeInfoService, TypeInfoService>();
-
+                //用户
                 services.AddScoped<IWriterInfoRepository, WriterInfoRepostitory>();
                 services.AddScoped<IWriterInfoService, WriterInfoService>();
 

@@ -11,11 +11,18 @@ using System.Threading.Tasks;
 
 namespace MyBBSWebApi.Controllers
 {
+    /// <summary>
+    /// 类型控制器
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TypeInfoController : ControllerBase
     {
         private readonly ITypeInfoService _typeInfoService;
+        /// <summary>
+        /// 类型构造函数
+        /// </summary>
+        /// <param name="typeInfoService"></param>
         public TypeInfoController(ITypeInfoService typeInfoService)
         {
             this._typeInfoService = typeInfoService;
@@ -25,12 +32,11 @@ namespace MyBBSWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Types")]
-        public async Task<ApiResult> GetType()
+        public  async Task<ApiResult> Types()
         {
             var types = await _typeInfoService.QueryAsync();
-            if (types.Count == 0) return ApiResultHelper.Error("没有文章类型");
+            if (types.Count <= 0) return ApiResultHelper.Error("没有文章类型");
             return ApiResultHelper.Success(types);
-
         }
         /// <summary>
         /// 新增操作
