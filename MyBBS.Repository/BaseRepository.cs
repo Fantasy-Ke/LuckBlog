@@ -17,12 +17,12 @@ namespace MyBBS.Repository
         {
             base.Context = DbScoped.Sugar;
             //创建数据库
-            //base.Context.DbMaintenance.CreateDatabase();
-            //base.Context.CodeFirst.InitTables(
-            //    typeof(BlogNews),
-            //    typeof(WriterInfo),
-            //    typeof(TypeInfo)
-            //    );
+            base.Context.DbMaintenance.CreateDatabase();
+            base.Context.CodeFirst.InitTables(
+                typeof(BlogNews),
+                typeof(WriterInfo),
+                typeof(TypeInfo)
+                );
         }
         public async Task<bool> CreateAsync(T entity)
         {

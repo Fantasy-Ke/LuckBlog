@@ -30,6 +30,16 @@ namespace MyBBSWebApi.Controllers
             this._writerInfoService = writerInfoService;
         }
         /// <summary>
+        /// 查询所有用户
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetWriter")]
+        public async Task<ApiResult> GetWriter()
+        {
+            var writerInfo = await _writerInfoService.QueryAsync();
+            return ApiResultHelper.Success(writerInfo);
+        }
+        /// <summary>
         /// 新增操作
         /// </summary>
         /// <param name="name"></param>
@@ -60,7 +70,12 @@ namespace MyBBSWebApi.Controllers
         public async Task<ApiResult> Edit(string name)
         {
             int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
-            return ApiResultHelper.Error("修改失败");
+            var writer = await _writerInfoService.FindAsync(id);
+            writer.Name = name;
+            bool b= await _writerInfoService.EditAsync(writer);
+            if (!b) return ApiResultHelper.Error("修改失败");
+            return ApiResultHelper.Success("修改成功");
         }
+        
     }
 }

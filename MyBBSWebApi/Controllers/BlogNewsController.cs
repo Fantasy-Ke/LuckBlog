@@ -37,7 +37,8 @@ namespace MyBBSWebApi.Controllers
         [HttpGet("BlogNews")]
         public async Task<ActionResult<ApiResult>> GetBlogNews()
         {
-           var data= await _blogNewsService.QueryAsync();
+            int Id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+           var data= await _blogNewsService.QueryAsync(p=>p.WriterId== Id);
             if (data == null) return ApiResultHelper.Error("查询出错");
             return ApiResultHelper.Success(data);
         }
@@ -53,13 +54,13 @@ namespace MyBBSWebApi.Controllers
         {
             BlogNews blogNews = new BlogNews()
             {
-                BrowseCount=0,
-                LikeCount=0,
-                Content=content,
-                Time=DateTime.Now,
-                Title=title,
-                TypeId=typeid,
-                WriterId=1
+                BrowseCount = 0,
+                LikeCount = 0,
+                Content = content,
+                Time = DateTime.Now,
+                Title = title,
+                TypeId = typeid,
+                WriterId = Convert.ToInt32(this.User.FindFirst("Id").Value)
             };
             bool b = await _blogNewsService.CreateAsync(blogNews);
             if (!b) return ApiResultHelper.Error("添加错误");
