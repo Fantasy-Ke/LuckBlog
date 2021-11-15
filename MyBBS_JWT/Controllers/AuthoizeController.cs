@@ -24,6 +24,12 @@ namespace MyBBS_JWT.Controllers
         {
             _writerInfoService = writerInfoService;
         }
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="userpwd"></param>
+        /// <returns></returns>
         [HttpPost("Login")]
         public async Task<ApiResult> Login(string username,string userpwd)
         {

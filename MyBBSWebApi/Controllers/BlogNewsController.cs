@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyBBS.IRepository;
 using MyBBS.Model;
 using MyBBSWebApi.Utility.ApiResult;
@@ -16,6 +17,7 @@ namespace MyBBSWebApi.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BlogNewsController : ControllerBase
     {
         // GET: api/<BlogNewsController>

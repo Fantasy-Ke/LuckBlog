@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBBS.IRepository;
 using MyBBS.Model;
@@ -16,6 +17,7 @@ namespace MyBBSWebApi.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class WriterInfoController : ControllerBase
     {
         private readonly IWriterInfoService _writerInfoService;

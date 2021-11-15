@@ -31,15 +31,7 @@ namespace MyBBS_JWT
         {
 
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("all", builder =>
-                {
-                    builder.AllowAnyOrigin() //允许任何来源的主机访问
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-            });
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyBBS_JWT", Version = "v1" });

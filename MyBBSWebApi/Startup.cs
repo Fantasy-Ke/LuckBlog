@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyBBS.IRepository;
 using MyBBS.Repository;
@@ -14,6 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MyBBSWebApi
@@ -70,6 +73,32 @@ namespace MyBBSWebApi
                 var CommentsFile = Path.Combine(baseDirectory, CommentsFileName);
                 //将注释的Xml文档添加到swaggerUi中
                 c.IncludeXmlComments(CommentsFile);
+                #region Swagger使用鉴权组件
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+                    Name = "Authorization",
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                  {
+                    new OpenApiSecurityScheme
+                    {
+                      Reference=new OpenApiReference
+                      {
+                        Type=ReferenceType.SecurityScheme,
+                        Id="Bearer"
+                      }
+                    },
+                    new string[] {}
+                  }
+                });
+                #endregion
+
             });
             #region SqlSugarIOC
 
@@ -83,6 +112,10 @@ namespace MyBBSWebApi
             #region IOC依赖注入
             services.AddCustomIOC();
             #endregion
+
+            #region JWT鉴权
+            services.AddCustomJWT();
+            #endregion
         }
         /// <summary>
         /// 中间件
@@ -94,7 +127,7 @@ namespace MyBBSWebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
             }
             //添加Swagger中间件
             app.UseSwagger();
@@ -104,30 +137,63 @@ namespace MyBBSWebApi
             });
 
             app.UseRouting();
+            //使用管道--鉴权
+            app.UseAuthentication();
+            //使用管道--授权
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
-        
-    }
-     static class IOCExtend
-    {
-            public static IServiceCollection AddCustomIOC(this IServiceCollection services)
-            {
-                //新闻信息
-                services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
-                services.AddScoped<IBlogNewsService, BlogNewsService>();
-                //类型
-                services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
-                services.AddScoped<ITypeInfoService, TypeInfoService>();
-                //用户
-                services.AddScoped<IWriterInfoRepository, WriterInfoRepostitory>();
-                services.AddScoped<IWriterInfoService, WriterInfoService>();
 
-                return services;
-             }
+    }
+    static class IOCExtend
+    {
+        /// <summary>
+        /// IOC注入
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomIOC(this IServiceCollection services)
+        {
+            //新闻信息
+            services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
+            services.AddScoped<IBlogNewsService, BlogNewsService>();
+            //类型
+            services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
+            services.AddScoped<ITypeInfoService, TypeInfoService>();
+            //用户
+            services.AddScoped<IWriterInfoRepository, WriterInfoRepostitory>();
+            services.AddScoped<IWriterInfoService, WriterInfoService>();
+
+            return services;
+        }
+        /// <summary>
+        /// jwt鉴权
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomJWT(this IServiceCollection services)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SDMC-CJAS1-SAD-DFSFA-SADHJVF-VF")),
+                    ValidateIssuer = true,
+                    ValidIssuer = "http://localhost:6060",
+                    ValidateAudience = true,
+                    ValidAudience = "http://localhost:5000",
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(60)
+                };
+            });
+            return services;
+        }
+
     }
 }
