@@ -32,7 +32,7 @@ namespace MyBBSWebApi
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;//我看看行不行md
+            Configuration = configuration;//测试成功
         }
 
         /// <summary>
