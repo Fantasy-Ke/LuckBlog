@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBSWebApi", "MyBBSWebApi\MyBBSWebApi.csproj", "{1B15CD72-E84B-4673-BD9D-9A66CD910E53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBS.Model", "MyBBS.Model\MyBBS.Model.csproj", "{750E8F95-6EC4-46D5-A65D-064CB8115778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.Model", "LuckyBlog.Model\LuckyBlog.Model.csproj", "{750E8F95-6EC4-46D5-A65D-064CB8115778}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{65404C79-5066-4B6E-87C8-165ACE98622C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{3DC172F7-F31D-4EAD-9947-0BFA8FB0551B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBS.IRepository", "MyBBS.IRepository\MyBBS.IRepository.csproj", "{477A4F27-FA00-4D7E-919D-405B43FACC20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.IRepository", "LuckyBlog.IRepository\LuckyBlog.IRepository.csproj", "{477A4F27-FA00-4D7E-919D-405B43FACC20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBS.Repository", "MyBBS.Repository\MyBBS.Repository.csproj", "{5DAF31E2-592C-4637-970F-879652729055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.Repository", "LuckyBlog.Repository\LuckyBlog.Repository.csproj", "{5DAF31E2-592C-4637-970F-879652729055}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBS.IService", "MyBBS.IService\MyBBS.IService.csproj", "{759132F1-4551-43D3-B538-608921AEC63E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.IService", "LuckyBlog.IService\LuckyBlog.IService.csproj", "{759132F1-4551-43D3-B538-608921AEC63E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBBS.Service", "MyBBS.Service\MyBBS.Service.csproj", "{CD60CA78-C9C9-4521-A7D6-1FCAF6BFD36F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.Service", "LuckyBlog.Service\LuckyBlog.Service.csproj", "{CD60CA78-C9C9-4521-A7D6-1FCAF6BFD36F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBBS_JWT", "MyBBS_JWT\MyBBS_JWT.csproj", "{C277A71D-FFE0-4DF7-B845-29CD975FF39E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckyBlog.JWT", "LuckyBlog.JWT\LuckyBlog.JWT.csproj", "{C277A71D-FFE0-4DF7-B845-29CD975FF39E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MyBBS.IRepository;
-using MyBBS.Model;
+using LuckyBlog.IRepository;
+using LuckyBlog.Model;
 using MyBBSWebApi.Utility.ApiResult;
 using System;
 using System.Collections.Generic;

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>LuckyBlog.Model</AssemblyName>
+    <RootNamespace>LuckyBlog.Model</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugar" Version="5.0.4.3" />
+    <PackageReference Include="Sugar.Core" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

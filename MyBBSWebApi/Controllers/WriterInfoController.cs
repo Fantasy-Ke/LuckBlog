@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MyBBS.IRepository;
-using MyBBS.Model;
+using LuckyBlog.IRepository;
+using LuckyBlog.Model;
 using MyBBSWebApi.Utility._MD5;
 using MyBBSWebApi.Utility.ApiResult;
 using System;

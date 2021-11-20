@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>LuckyBlog.Service</AssemblyName>
+    <RootNamespace>LuckyBlog.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LuckyBlog.IRepository\LuckyBlog.IRepository.csproj" />
+    <ProjectReference Include="..\LuckyBlog.IService\LuckyBlog.IService.csproj" />
+  </ItemGroup>
+
+</Project>

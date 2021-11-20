@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>LuckyBlog.Repository</AssemblyName>
+    <RootNamespace>LuckyBlog.Repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugar.IOC" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LuckyBlog.IRepository\LuckyBlog.IRepository.csproj" />
+  </ItemGroup>
+
+</Project>
