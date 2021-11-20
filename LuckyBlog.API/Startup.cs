@@ -32,7 +32,7 @@ namespace LuckyBlog.API
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;//²âÊÔ³É¹¦
+            Configuration = configuration;//æµ‹è¯•ä¸€ä¸‹ä¸‹
         }
 
         /// <summary>
@@ -42,43 +42,43 @@ namespace LuckyBlog.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         /// <summary>
-        /// ·þÎñ
+        /// ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
-            //ÅäÖÃ¿çÓò´¦Àí£¬ÔÊÐíËùÓÐÀ´Ô´£º
+            //ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
             services.AddCors(options =>
             {
                 options.AddPolicy("all", builder =>
                 {
-                    builder.AllowAnyOrigin() //ÔÊÐíÈÎºÎÀ´Ô´µÄÖ÷»ú·ÃÎÊ
+                    builder.AllowAnyOrigin() //ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
             });
             services.AddSwaggerGen(c =>
             {
-                //Ìí¼ÓÎÄµµÐÅÏ¢
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½Ï¢
                 c.SwaggerDoc("One", new OpenApiInfo
                 {
                     Title = "APIServiceOne",
                     Version = "v1"
                 });
-                //½«controller²ãµÄ×¢ÊÍÌí¼ÓµÄswaggeruiÖÐ
+                //ï¿½ï¿½controllerï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½swaggeruiï¿½ï¿½
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 var CommentsFileName = @"LuckyBlog.xml";
                 var CommentsFile = Path.Combine(baseDirectory, CommentsFileName);
-                //½«×¢ÊÍµÄXmlÎÄµµÌí¼Óµ½swaggerUiÖÐ
+                //ï¿½ï¿½×¢ï¿½Íµï¿½Xmlï¿½Äµï¿½ï¿½ï¿½ï¿½Óµï¿½swaggerUiï¿½ï¿½
                 c.IncludeXmlComments(CommentsFile);
-                #region SwaggerÊ¹ÓÃ¼øÈ¨×é¼þ
+                #region SwaggerÊ¹ï¿½Ã¼ï¿½È¨ï¿½ï¿½ï¿½
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Description = "Ö±½ÓÔÚÏÂ¿òÖÐÊäÈëBearer {token}£¨×¢ÒâÁ½ÕßÖ®¼äÊÇÒ»¸ö¿Õ¸ñ£©",
+                    Description = "Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bearer {token}ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Õ¸ï¿½",
                     Name = "Authorization",
                     BearerFormat = "JWT",
                     Scheme = "Bearer"
@@ -106,19 +106,19 @@ namespace LuckyBlog.API
             {
                 ConnectionString = this.Configuration["SqlConn"],
                 DbType = IocDbType.SqlServer,
-                IsAutoCloseConnection = true//×Ô¶¯ÊÍ·Å
+                IsAutoCloseConnection = true//ï¿½Ô¶ï¿½ï¿½Í·ï¿½
             });
             #endregion
-            #region IOCÒÀÀµ×¢Èë
+            #region IOCï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
             services.AddCustomIOC();
             #endregion
 
-            #region JWT¼øÈ¨
+            #region JWTï¿½ï¿½È¨
             services.AddCustomJWT();
             #endregion
         }
         /// <summary>
-        /// ÖÐ¼ä¼þ
+        /// ï¿½Ð¼ï¿½ï¿½
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -129,7 +129,7 @@ namespace LuckyBlog.API
                 app.UseDeveloperExceptionPage();
 
             }
-            //Ìí¼ÓSwaggerÖÐ¼ä¼þ
+            //ï¿½ï¿½ï¿½ï¿½Swaggerï¿½Ð¼ï¿½ï¿½
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -137,9 +137,9 @@ namespace LuckyBlog.API
             });
 
             app.UseRouting();
-            //Ê¹ÓÃ¹ÜµÀ--¼øÈ¨
+            //Ê¹ï¿½Ã¹Üµï¿½--ï¿½ï¿½È¨
             app.UseAuthentication();
-            //Ê¹ÓÃ¹ÜµÀ--ÊÚÈ¨
+            //Ê¹ï¿½Ã¹Üµï¿½--ï¿½ï¿½È¨
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -152,26 +152,26 @@ namespace LuckyBlog.API
     static class IOCExtend
     {
         /// <summary>
-        /// IOC×¢Èë
+        /// IOC×¢ï¿½ï¿½
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
-            //ÐÂÎÅÐÅÏ¢
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
             services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
             services.AddScoped<IBlogNewsService, BlogNewsService>();
-            //ÀàÐÍ
+            //ï¿½ï¿½ï¿½ï¿½
             services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
             services.AddScoped<ITypeInfoService, TypeInfoService>();
-            //ÓÃ»§
+            //ï¿½Ã»ï¿½
             services.AddScoped<IWriterInfoRepository, WriterInfoRepostitory>();
             services.AddScoped<IWriterInfoService, WriterInfoService>();
 
             return services;
         }
         /// <summary>
-        /// jwt¼øÈ¨
+        /// jwtï¿½ï¿½È¨
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
