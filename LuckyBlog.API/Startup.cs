@@ -49,7 +49,7 @@ namespace LuckyBlog.API
         {
 
             services.AddControllers();
-            //���ÿ�����������������Դ��
+            //跨域配置
             services.AddCors(options =>
             {
                 options.AddPolicy("all", builder =>
