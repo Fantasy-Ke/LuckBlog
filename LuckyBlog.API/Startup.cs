@@ -69,7 +69,7 @@ namespace LuckyBlog.API
                 });
                 //将controller层的注释添加的swaggerui中
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                var CommentsFileName = @"MyBBSWebApi.xml";
+                var CommentsFileName = @"LuckyBlog.xml";
                 var CommentsFile = Path.Combine(baseDirectory, CommentsFileName);
                 //将注释的Xml文档添加到swaggerUi中
                 c.IncludeXmlComments(CommentsFile);
