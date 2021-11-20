@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable></Nullable>
+    <AssemblyName>LuckyBlog.API</AssemblyName>
+    <RootNamespace>LuckyBlog.API</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

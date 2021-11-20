@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using LuckyBlog.IRepository;
 using LuckyBlog.Model;
 using LuckyBlog.Repository;
-using MyBBSWebApi.Utility.ApiResult;
+using LuckyBlog.API.Utility.ApiResult;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyBBSWebApi.Controllers
+namespace LuckyBlog.API.Controllers
 {
     /// <summary>
     /// 类型控制器

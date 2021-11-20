@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using LuckyBlog.IRepository;
 using LuckyBlog.Model;
-using MyBBSWebApi.Utility.ApiResult;
+using LuckyBlog.API.Utility.ApiResult;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MyBBSWebApi.Controllers
+namespace LuckyBlog.API.Controllers
 {
     /// <summary>
     /// 新闻控制器

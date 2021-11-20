@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyBBSWebApi.Utility.ApiResult
+namespace LuckyBlog.API.Utility.ApiResult
 {
     public class ApiResult
     {

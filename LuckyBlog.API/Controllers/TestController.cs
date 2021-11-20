@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyBBSWebApi.Controllers
+namespace LuckyBlog.API.Controllers
 {
     /// <summary>
     /// 测试

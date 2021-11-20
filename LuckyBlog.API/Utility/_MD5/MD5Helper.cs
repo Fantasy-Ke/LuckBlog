@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBBSWebApi.Utility._MD5
+namespace LuckyBlog.API.Utility._MD5
 {
     public class MD5Helper
     {
