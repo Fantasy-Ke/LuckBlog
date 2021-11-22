@@ -49,36 +49,36 @@ namespace LuckyBlog.API
         {
 
             services.AddControllers();
-            //跨域配置
+            //配置跨域处理，允许所有来源：
             services.AddCors(options =>
             {
                 options.AddPolicy("all", builder =>
                 {
-                    builder.AllowAnyOrigin() //�����κ���Դ����������
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
             });
             services.AddSwaggerGen(c =>
             {
-                //�����ĵ���Ϣ
+                //添加文档信息
                 c.SwaggerDoc("One", new OpenApiInfo
                 {
                     Title = "APIServiceOne",
                     Version = "v1"
                 });
-                //��controller���ע�����ӵ�swaggerui��
+                //将controller层的注释添加的swaggerui中
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 var CommentsFileName = @"LuckyBlog.xml";
                 var CommentsFile = Path.Combine(baseDirectory, CommentsFileName);
-                //��ע�͵�Xml�ĵ����ӵ�swaggerUi��
+                //将注释的Xml文档添加到swaggerUi中
                 c.IncludeXmlComments(CommentsFile);
                 #region Swaggerʹ�ü�Ȩ���
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Description = "ֱ�����¿�������Bearer {token}��ע������֮����һ���ո�",
+                    Description = "直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
                     Name = "Authorization",
                     BearerFormat = "JWT",
                     Scheme = "Bearer"
@@ -106,14 +106,14 @@ namespace LuckyBlog.API
             {
                 ConnectionString = this.Configuration["SqlConn"],
                 DbType = IocDbType.SqlServer,
-                IsAutoCloseConnection = true//�Զ��ͷ�
+                IsAutoCloseConnection = true//自动释放
             });
             #endregion
-            #region IOC����ע��
+            #region IOC依赖注入
             services.AddCustomIOC();
             #endregion
 
-            #region JWT��Ȩ
+            #region JWT鉴权
             services.AddCustomJWT();
             #endregion
         }
@@ -129,7 +129,7 @@ namespace LuckyBlog.API
                 app.UseDeveloperExceptionPage();
 
             }
-            //����Swagger�м��
+            //添加Swagger中间件
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -137,9 +137,9 @@ namespace LuckyBlog.API
             });
 
             app.UseRouting();
-            //ʹ�ùܵ�--��Ȩ
+            //使用管道--鉴权
             app.UseAuthentication();
-            //ʹ�ùܵ�--��Ȩ
+            //使用管道--授权
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -152,26 +152,26 @@ namespace LuckyBlog.API
     static class IOCExtend
     {
         /// <summary>
-        /// IOCע��
+        /// IOC注入
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection AddCustomIOC(this IServiceCollection services)
         {
-            //������Ϣ
+            //新闻信息
             services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
             services.AddScoped<IBlogNewsService, BlogNewsService>();
-            //����
+            //类型
             services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
             services.AddScoped<ITypeInfoService, TypeInfoService>();
-            //�û�
+            //用户
             services.AddScoped<IWriterInfoRepository, WriterInfoRepostitory>();
             services.AddScoped<IWriterInfoService, WriterInfoService>();
 
             return services;
         }
         /// <summary>
-        /// jwt��Ȩ
+        /// jwt鉴权
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
