@@ -42,7 +42,7 @@ namespace LuckyBlog.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         /// <summary>
-        /// 服务
+        /// ����
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -73,7 +73,7 @@ namespace LuckyBlog.API
                 var CommentsFile = Path.Combine(baseDirectory, CommentsFileName);
                 //将注释的Xml文档添加到swaggerUi中
                 c.IncludeXmlComments(CommentsFile);
-                #region Swagger使用鉴权组件
+                #region Swaggerʹ�ü�Ȩ���
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -118,7 +118,7 @@ namespace LuckyBlog.API
             #endregion
         }
         /// <summary>
-        /// 中间件
+        /// �м��
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -194,7 +194,6 @@ namespace LuckyBlog.API
             });
             return services;
         }
-
 
     }
 }
